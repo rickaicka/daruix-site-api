@@ -4,7 +4,8 @@ import { AppService } from './app.service';
 import * as process from 'process';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { DivisionEntity } from './division/entity/division.entity';
+import { DivisionEntity } from './models/division/entity/division.entity';
+import { DivisionModule } from './models/division/division.module';
 
 export const EntitiesList = [DivisionEntity];
 
@@ -22,6 +23,7 @@ export const EntitiesList = [DivisionEntity];
       synchronize: process.env.ENV === 'development',
       schema: 'public',
     }),
+    DivisionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

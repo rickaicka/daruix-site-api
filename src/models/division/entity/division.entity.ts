@@ -5,9 +5,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { IDivision } from '../interface/division.interface';
 
 @Entity()
-export class DivisionEntity {
+export class DivisionEntity implements IDivision {
   @PrimaryGeneratedColumn({
     unsigned: true,
   })
