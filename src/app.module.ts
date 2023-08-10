@@ -6,8 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DivisionEntity } from './models/division/entity/division.entity';
 import { DivisionModule } from './models/division/division.module';
+import { ClientEntity } from './models/client/entity/client.entity';
+import { ClientModule } from './models/client/client.module';
 
-export const EntitiesList = [DivisionEntity];
+export const EntitiesList = [DivisionEntity, ClientEntity];
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ export const EntitiesList = [DivisionEntity];
       schema: 'public',
     }),
     DivisionModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
