@@ -2,17 +2,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IDivision } from '../interface/division.interface';
-import { ClientEntity } from '../../client/entity/client.entity';
+import { IClient } from '../interface/client.interface';
+import { DivisionEntity } from '../../division/entity/division.entity';
 
 @Entity({
-  name: 'divisions',
+  name: 'clients',
 })
-export class DivisionEntity implements IDivision {
+export class ClientEntity implements IClient {
   @PrimaryGeneratedColumn({
     unsigned: true,
   })
@@ -22,10 +22,10 @@ export class DivisionEntity implements IDivision {
     length: 127,
     unique: true,
   })
-  divisionName: string;
+  clientName: string;
 
-  @OneToMany(() => ClientEntity, (client) => client)
-  clients: ClientEntity[];
+  @ManyToOne(() => DivisionEntity, (division) => division.clients)
+  division: DivisionEntity;
 
   @CreateDateColumn()
   createdAt?: Date;
